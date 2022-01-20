@@ -120,7 +120,7 @@
     <sbt.project.name>spark</sbt.project.name>
     <slf4j.version>1.7.30</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
-    <hadoop.version>3.3.1</hadoop.version>
+    <hadoop.version>3.0.0-cdh6.3.2</hadoop.version>
     <protobuf.version>2.5.0</protobuf.version>
     <yarn.version>${hadoop.version}</yarn.version>
     <zookeeper.version>3.6.2</zookeeper.version>
@@ -286,6 +286,17 @@
   </properties>
   <repositories>
     <repository>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
       <id>gcs-maven-central-mirror</id>
       <!--
         Google Mirror of Maven Central, placed first so that it's used instead of flaky Maven Central.
@@ -299,6 +310,10 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
+    </repository>
+    <repository>
+      <id>cloudera</id>
+      <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
     </repository>
     <repository>
       <!--
@@ -316,6 +331,11 @@
     </repository>
   </repositories>
   <pluginRepositories>
+    <pluginRepository>
+      <id>cloudera</id>
+      <name>Cloudera Repositories</name>
+      <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+    </pluginRepository>
     <pluginRepository>
       <id>gcs-maven-central-mirror</id>
       <!--
@@ -3302,6 +3322,14 @@
     <profile>
       <id>hadoop-3.2</id>
       <!-- Default hadoop profile. Uses global properties. -->
+    </profile>
+
+    <profile>
+      <id>hadoop-3.0</id>
+      <!-- Default hadoop profile. Uses global properties. -->
+      <properties>
+        <hadoop.version>3.0.0-cdh6.3.2</hadoop.version>
+      </properties>
     </profile>
 
     <profile>
